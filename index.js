@@ -1,7 +1,10 @@
 const amqp = require('amqplib');
 
-const user = process.env.RABBITMQ_DEFAULT_USER;
-const pass = process.env.RABBITMQ_DEFAULT_PASS;
+const user = process.env.RABBITMQ_USER;
+const pass = process.env.RABBITMQ_PASS;
+
+console.log(`connecting with user: "${user}"`); 
+
 const RABBITMQ_URL = `amqp://${user}:${pass}@rabbitmq:5672`;
 
 async function connect() {

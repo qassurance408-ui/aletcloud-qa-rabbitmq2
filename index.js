@@ -10,7 +10,13 @@ const RABBITMQ_URL = `amqp://${user}:${pass}@rabbitmq:5672`;
 async function connect() {
   while (true) {
     try {
-      const conn = await amqp.connect(RABBITMQ_URL);
+      const conn = await amqp.connect({
+    protocol: 'amqp',
+    hostname: 'rabbitmq',
+    port: 5672,
+    username: process.env.RABBITMQ_USER,
+    password: process.env.RABBITMQ_PASS
+});
       console.log('Connected to RabbitMQ!');
       return conn;
     } catch (e) {
